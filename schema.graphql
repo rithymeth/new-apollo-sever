@@ -1,0 +1,33 @@
+# schema.graphql
+
+type Post {
+  id: Int!
+  name: String!
+  instructions: String!
+  imageUrl: String
+  ingredients: [Ingredient!]!
+}
+
+type Ingredient {
+  id: Int!
+  name: String!
+  quantity: String!
+  quantityType: String!
+}
+
+type Query {
+  posts: [Post!]!
+  post(id: Int!): Post
+}
+
+type Mutation {
+  createPost(name: String!, instructions: String!, imageUrl: String, ingredients: [IngredientInput!]!): Post!
+  updatePost(id: Int!, name: String, instructions: String, imageUrl: String, ingredients: [IngredientInput!]): Post
+  deletePost(id: Int!): Post
+}
+
+input IngredientInput {
+  name: String!
+  quantity: String!
+  quantityType: String!
+}
